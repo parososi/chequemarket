@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simulação de Ondas do Oceano</title>
+  <title>Simulação 3D de Ondas do Oceano</title>
   <style>
     :root {
       color-scheme: dark;
@@ -77,6 +77,12 @@
       height: 100%;
       display: block;
       filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.35));
+      cursor: grab;
+      background: transparent;
+    }
+
+    canvas:active {
+      cursor: grabbing;
     }
 
     .controls {
@@ -170,8 +176,8 @@
   <main>
     <header>
       <div>
-        <h1>Simulação de Ondas do Oceano</h1>
-        <p>Visualização suave para entender como vento, altura e clima influenciam o mar.</p>
+        <h1>Simulação 3D de Ondas do Oceano</h1>
+        <p>Arraste com o mouse para navegar e veja como vento, altura e clima moldam o mar.</p>
       </div>
       <div class="legend">
         <div class="legend-item"><span class="dot" style="background:#7cc4ff"></span>Superfície</div>
@@ -181,7 +187,7 @@
     </header>
 
     <div class="canvas-wrap">
-      <canvas id="ocean" aria-label="Visualização das ondas"></canvas>
+      <canvas id="ocean" aria-label="Visualização 3D das ondas"></canvas>
     </div>
 
     <section class="controls" aria-label="Controles de simulação">
@@ -221,113 +227,6 @@
     </section>
   </main>
 
-  <script>
-    const canvas = document.getElementById("ocean");
-    const ctx = canvas.getContext("2d");
-
-    const windInput = document.getElementById("wind");
-    const heightInput = document.getElementById("waveHeight");
-    const lightInput = document.getElementById("light");
-    const weatherSelect = document.getElementById("weather");
-
-    const windValue = document.getElementById("windValue");
-    const heightValue = document.getElementById("heightValue");
-    const lightValue = document.getElementById("lightValue");
-
-    let width = 0;
-    let height = 0;
-    const waves = [
-      { color: "#7cc4ff", amp: 12, len: 120, speed: 0.8, offset: 0 },
-      { color: "#4ea3db", amp: 20, len: 210, speed: 0.55, offset: 20 },
-      { color: "#2a6fa3", amp: 32, len: 330, speed: 0.35, offset: 40 },
-    ];
-
-    function resize() {
-      width = canvas.clientWidth;
-      height = canvas.clientHeight;
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      ctx.scale(dpr, dpr);
-    }
-
-    function setWeather(theme) {
-      const themes = {
-        calm: {
-          bg: "linear-gradient(140deg, #9ddcff, #2c5e88)",
-          light: 1,
-        },
-        breeze: {
-          bg: "linear-gradient(150deg, #8ec5fc, #1c3b57)",
-          light: 1,
-        },
-        cloudy: {
-          bg: "linear-gradient(160deg, #8fa4bf, #2c3a55)",
-          light: 0.9,
-        },
-        storm: {
-          bg: "linear-gradient(160deg, #1b2735, #0f1624)",
-          light: 0.65,
-        },
-      };
-
-      const data = themes[theme];
-      document.body.style.background = data.bg;
-      lightInput.value = data.light;
-      updateLabels();
-    }
-
-    function updateLabels() {
-      windValue.textContent = `${Number(windInput.value).toFixed(0)} km/h`;
-      heightValue.textContent = `${Number(heightInput.value).toFixed(0)} cm`;
-      lightValue.textContent = `${Math.round(parseFloat(lightInput.value) * 100)}%`;
-    }
-
-    function drawWave({ color, amp, len, speed, offset }, time, index) {
-      const amplitude = amp * (heightInput.value / 18);
-      const windFactor = 1 + windInput.value / 80;
-      const phase = time * speed * windFactor + offset;
-      ctx.beginPath();
-      for (let x = 0; x <= width; x += 4) {
-        const y = Math.sin((x + phase) / len) * amplitude + height * 0.45 + index * 16;
-        ctx.lineTo(x, y);
-      }
-      ctx.lineTo(width, height);
-      ctx.lineTo(0, height);
-      const light = parseFloat(lightInput.value);
-      ctx.fillStyle = applyLighting(color, light, index);
-      ctx.fill();
-    }
-
-    function applyLighting(hex, light, layer) {
-      const base = hex.replace("#", "");
-      const r = parseInt(base.substring(0, 2), 16);
-      const g = parseInt(base.substring(2, 4), 16);
-      const b = parseInt(base.substring(4, 6), 16);
-      const factor = Math.min(1.4, Math.max(0.5, light - layer * 0.08));
-      const toHex = (v) => Math.min(255, Math.max(0, Math.floor(v * factor)))
-        .toString(16)
-        .padStart(2, "0");
-      return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-    }
-
-    function animate(time) {
-      ctx.clearRect(0, 0, width, height);
-      waves.forEach((w, i) => drawWave(w, time * 0.08, i));
-      requestAnimationFrame(animate);
-    }
-
-    windInput.addEventListener("input", updateLabels);
-    heightInput.addEventListener("input", updateLabels);
-    lightInput.addEventListener("input", updateLabels);
-    weatherSelect.addEventListener("change", (e) => setWeather(e.target.value));
-
-    window.addEventListener("resize", resize);
-
-    resize();
-    updateLabels();
-    setWeather(weatherSelect.value);
-    requestAnimationFrame(animate);
-  </script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
