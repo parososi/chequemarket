@@ -12,7 +12,13 @@
 <body>
   <div class="page">
     <header class="top-bar">
-      <div class="logo">⚪️</div>
+      <div class="brand">
+        <div class="logo">⚪️</div>
+        <div>
+          <p class="eyebrow">Chequemarket Newsroom</p>
+          <strong class="brand-title">IA para todos os formatos</strong>
+        </div>
+      </div>
       <div class="header-actions">
         <button class="ghost">Assine a newsletter</button>
         <button class="ghost">Exibições ao vivo</button>
@@ -65,48 +71,37 @@
       </main>
 
       <aside class="news">
-        <div class="news-item">
-          <div class="news-media gradient-rose"></div>
-          <div>
-            <p class="news-meta">Uma atualização para<br />o ChatGPT em aplicativos móveis</p>
-            <p class="news-time">Leitura de 3 minutos</p>
-          </div>
-        </div>
-        <div class="news-item">
-          <div class="news-media gradient-blue"></div>
-          <div>
-            <p class="news-meta">O estado da IA nas empresas</p>
-            <p class="news-time">Leitura de 6 minutos</p>
-          </div>
-        </div>
-        <div class="news-item">
-          <div class="news-media gradient-green"></div>
-          <div>
-            <p class="news-meta">O futuro da pesquisa da OpenAI</p>
-            <p class="news-time">Leitura de 4 minutos</p>
-          </div>
-        </div>
-        <div class="news-item">
-          <div class="news-media gradient-sand"></div>
-          <div>
-            <p class="news-meta">Adeus, RDWhisper</p>
-            <p class="news-time">Leitura de 2 minutos</p>
-          </div>
-        </div>
+        <h3 class="panel-title">Últimas rápidas</h3>
+        <div class="news-list" id="news-list"></div>
         <div class="news-list" id="side-list"></div>
       </aside>
     </div>
   </div>
 
-  <div class="modal" id="modal" aria-hidden="true">
-    <div class="modal-content">
-      <button class="close" id="close-modal" aria-label="Fechar">✕</button>
-      <p class="modal-category" id="modal-category"></p>
-      <h2 id="modal-title"></h2>
-      <p class="modal-meta" id="modal-meta"></p>
-      <p id="modal-body"></p>
+  <section class="post-view hidden" id="post-view" aria-live="polite">
+    <div class="post-frame">
+      <div class="post-top">
+        <button class="close" id="close-post" aria-label="Voltar para a home">← Voltar</button>
+        <span class="pill" id="post-tag"></span>
+      </div>
+      <div class="post-grid">
+        <div class="post-media">
+          <img id="post-cover" alt="Capa do post" loading="lazy" />
+          <div class="media-grid">
+            <video id="post-video" controls playsinline></video>
+            <audio id="post-audio" controls></audio>
+          </div>
+        </div>
+        <article class="post-body">
+          <p class="modal-meta" id="post-meta"></p>
+          <h1 id="post-title"></h1>
+          <p class="lede" id="post-description"></p>
+          <div id="post-content"></div>
+          <div class="chip-row" id="post-topics"></div>
+        </article>
+      </div>
     </div>
-  </div>
+  </section>
 
   <script src="script.js"></script>
 </body>
