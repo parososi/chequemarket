@@ -45,6 +45,8 @@ geometry.rotateX(-Math.PI / 2);
 const material = new THREE.ShaderMaterial({
   uniforms,
   vertexShader: /* glsl */ `
+    precision highp float;
+
     uniform float uTime;
     uniform float uWaveHeight;
     uniform float uWindSpeed;
@@ -81,6 +83,8 @@ const material = new THREE.ShaderMaterial({
     }
   `,
   fragmentShader: /* glsl */ `
+    precision mediump float;
+
     uniform float uLightStrength;
     uniform vec3 uSurfaceColor;
     uniform vec3 uMidColor;
