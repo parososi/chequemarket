@@ -26,7 +26,8 @@
         <h1>Encontre tintas a óleo por marca, pigmento e acabamento.</h1>
         <p class="subtitle">
           Pesquise como se estivesse no Google: digite um pigmento ("PB29", "PR101"), uma marca ou até
-          uma característica do acabamento. Nós filtramos automaticamente.
+          uma característica do acabamento. Nós filtramos automaticamente e conectamos com um painel RGB
+          para validar a cor real, sem gradientes artificiais.
         </p>
 
         <div class="search-panel">
@@ -70,14 +71,65 @@
               </select>
             </label>
           </div>
+          <div class="helper-text">Dica: clique em uma cor do painel RGB abaixo para preencher a busca com a tinta mais próxima.</div>
+        </div>
+        <div class="stats-grid" aria-label="Resumo do catálogo">
+          <div class="stat-card">
+            <p class="label">Cores no catálogo</p>
+            <p class="value" id="stat-total">0</p>
+          </div>
+          <div class="stat-card">
+            <p class="label">Pigmentos únicos</p>
+            <p class="value" id="stat-pigmentos">0</p>
+          </div>
+          <div class="stat-card">
+            <p class="label">Marcas mapeadas</p>
+            <p class="value" id="stat-marcas">0</p>
+          </div>
         </div>
       </div>
-      <div class="hero__swatches" aria-hidden="true">
-        <div class="swatch" style="--color:#0f3057"></div>
-        <div class="swatch" style="--color:#ff6f00"></div>
-        <div class="swatch" style="--color:#c43737"></div>
-        <div class="swatch" style="--color:#4a6741"></div>
-        <div class="swatch" style="--color:#b7a57a"></div>
+      <div class="hero__panel" aria-hidden="true">
+        <div class="panel-title">Visualização fiel</div>
+        <div class="swatch-grid">
+          <div class="swatch" style="--color:#0f3057"></div>
+          <div class="swatch" style="--color:#e8b21a"></div>
+          <div class="swatch" style="--color:#b13a2d"></div>
+          <div class="swatch" style="--color:#4a6b46"></div>
+          <div class="swatch" style="--color:#bb2467"></div>
+          <div class="swatch" style="--color:#4499c5"></div>
+          <div class="swatch" style="--color:#f2f2f2"></div>
+          <div class="swatch" style="--color:#1f7c6d"></div>
+        </div>
+        <p class="subtitle">Cartela chapada, sem gradientes para manter a leitura de pigmentos e marcas.</p>
+      </div>
+    </section>
+
+    <section class="rgb-lab" aria-labelledby="rgb-lab-title">
+      <div class="rgb-lab__header">
+        <div>
+          <p class="badge">Painel RGB</p>
+          <h2 id="rgb-lab-title">Inspecione e descubra cores com o mouse</h2>
+          <p class="subtitle">Passe o mouse sobre o painel, clique para pegar a cor mais próxima no catálogo e veja ano de criação ou descoberta.</p>
+        </div>
+        <div class="rgb-meta">
+          <div>
+            <p class="label">RGB</p>
+            <p class="value" id="rgb-value">-</p>
+          </div>
+          <div>
+            <p class="label">Hex</p>
+            <p class="value" id="hex-value">-</p>
+          </div>
+          <div>
+            <p class="label">Cor mais próxima</p>
+            <p class="value" id="closest-name">-</p>
+            <p class="mini" id="closest-date"></p>
+          </div>
+        </div>
+      </div>
+      <div class="rgb-lab__body">
+        <canvas id="rgb-map" width="520" height="260" aria-label="Painel RGB para inspeção"></canvas>
+        <div class="rgb-details" id="rgb-details">Passe o mouse para ver detalhes.</div>
       </div>
     </section>
 
