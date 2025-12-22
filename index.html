@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guia de Tintas a Óleo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">OilPigment<span>Finder</span></div>
+    <nav class="nav-links">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#como-usar">Como usar</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero__content">
+        <p class="badge">Beta • Catálogo colaborativo</p>
+        <h1>Encontre tintas a óleo por marca, pigmento e acabamento.</h1>
+        <p class="subtitle">
+          Pesquise como se estivesse no Google: digite um pigmento ("PB29", "PR101"), uma marca ou até
+          uma característica do acabamento. Nós filtramos automaticamente.
+        </p>
+
+        <div class="search-panel">
+          <div class="search-input">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 10-.71.71l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+            </svg>
+            <input id="busca" type="search" placeholder="Busque por pigmento, marca ou nome da cor" aria-label="Buscar tinta" />
+          </div>
+
+          <div class="filters">
+            <label class="field">
+              <span>Marca</span>
+              <select id="marca">
+                <option value="">Todas</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Pigmento</span>
+              <select id="pigmento">
+                <option value="">Todos</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Ligante</span>
+              <select id="ligante">
+                <option value="">Todos</option>
+                <option value="óleo de linhaça">Óleo de linhaça</option>
+                <option value="óleo de noz">Óleo de noz</option>
+                <option value="óleo de cártamo">Óleo de cártamo</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Opacidade</span>
+              <select id="opacidade">
+                <option value="">Todas</option>
+                <option value="transparente">Transparente</option>
+                <option value="semi-transparente">Semi-transparente</option>
+                <option value="semi-opaca">Semi-opaca</option>
+                <option value="opaca">Opaca</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="hero__swatches" aria-hidden="true">
+        <div class="swatch" style="--color:#0f3057"></div>
+        <div class="swatch" style="--color:#ff6f00"></div>
+        <div class="swatch" style="--color:#c43737"></div>
+        <div class="swatch" style="--color:#4a6741"></div>
+        <div class="swatch" style="--color:#b7a57a"></div>
+      </div>
+    </section>
+
+    <section id="catalogo" class="catalog">
+      <header class="section-header">
+        <div>
+          <p class="badge">Sugestões curadas</p>
+          <h2>Explorar tintas</h2>
+          <p class="subtitle">Compare pigmentos, marcas, ligantes e permanência antes de comprar.</p>
+        </div>
+        <div class="pill" id="resultado-count">0 resultados</div>
+      </header>
+
+      <div id="cards" class="grid"></div>
+    </section>
+
+    <section id="como-usar" class="info">
+      <div>
+        <h3>Como usar</h3>
+        <ul>
+          <li>Digite um pigmento (ex.: PB29) para ver variações por marca.</li>
+          <li>Filtre por opacidade e ligante para controlar tempo de secagem.</li>
+          <li>Abra a ficha técnica para confirmar série e permanência.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Curadoria</h3>
+        <p>Os dados abaixo são demonstrativos e seguem a convenção internacional de pigmentos para facilitar a busca.</p>
+        <p>Adicione mais marcas ou cores editando o array em <code>script.js</code>.</p>
+      </div>
+    </section>
+
+    <section id="faq" class="faq">
+      <h3>Perguntas frequentes</h3>
+      <details>
+        <summary>Os pigmentos são confiáveis?</summary>
+        <p>Sim, as siglas seguem a nomenclatura do Colour Index (ex.: PB29 - Ultramarine Blue).</p>
+      </details>
+      <details>
+        <summary>Posso baixar o catálogo?</summary>
+        <p>Este é um protótipo local. Basta salvar o HTML ou publicar em um host estático.</p>
+      </details>
+      <details>
+        <summary>Há suporte a novas marcas?</summary>
+        <p>Sim, basta inserir novos objetos no array <code>paints</code> em <code>script.js</code> com os campos existentes.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Feito para facilitar a vida de quem mistura cores no ateliê.</p>
+    <p class="small">Dados fictícios para demonstração.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
