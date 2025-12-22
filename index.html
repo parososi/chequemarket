@@ -3,115 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guia de Tintas a Óleo</title>
+  <title>OilPigment Finder</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="topbar">
     <div class="logo">OilPigment<span>Finder</span></div>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Navegação principal">
       <a href="#catalogo">Catálogo</a>
-      <a href="#como-usar">Como usar</a>
-      <a href="#faq">FAQ</a>
+      <a href="#rgb-lab">Painel RGB</a>
+      <a href="#faq">Ajuda</a>
     </nav>
+    <a class="ghost-btn" href="#catalogo">Explorar agora</a>
   </header>
 
   <main class="page">
-    <section class="hero">
-      <div class="hero__content">
-        <p class="badge">Beta • Catálogo colaborativo</p>
-        <h1>Encontre tintas a óleo por marca, pigmento e acabamento.</h1>
-        <p class="subtitle">
-          Pesquise como se estivesse no Google: digite um pigmento ("PB29", "PR101"), uma marca ou até
-          uma característica do acabamento. Nós filtramos automaticamente e conectamos com um painel RGB
-          para validar a cor real, sem gradientes artificiais.
-        </p>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__copy">
+        <p class="badge">Catálogo vivo de tintas a óleo</p>
+        <h1 id="hero-title">Um painel moderno para encontrar a cor certa.</h1>
+        <p class="lede">Reunimos marcas, pigmentos e ligantes em uma interface simples para você filtrar sem stress.
+          Clique em um tom, refine por opacidade e abra a ficha técnica em um único fluxo.</p>
 
-        <div class="search-panel">
-          <div class="search-input">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 10-.71.71l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-            </svg>
-            <input id="busca" type="search" placeholder="Busque por pigmento, marca ou nome da cor" aria-label="Buscar tinta" />
-          </div>
-
-          <div class="filters">
-            <label class="field">
-              <span>Marca</span>
-              <select id="marca">
-                <option value="">Todas</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Pigmento</span>
-              <select id="pigmento">
-                <option value="">Todos</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Ligante</span>
-              <select id="ligante">
-                <option value="">Todos</option>
-                <option value="óleo de linhaça">Óleo de linhaça</option>
-                <option value="óleo de noz">Óleo de noz</option>
-                <option value="óleo de cártamo">Óleo de cártamo</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Opacidade</span>
-              <select id="opacidade">
-                <option value="">Todas</option>
-                <option value="transparente">Transparente</option>
-                <option value="semi-transparente">Semi-transparente</option>
-                <option value="semi-opaca">Semi-opaca</option>
-                <option value="opaca">Opaca</option>
-              </select>
-            </label>
-          </div>
-          <div class="helper-text">Dica: clique em uma cor do painel RGB abaixo para preencher a busca com a tinta mais próxima.</div>
+        <div class="hero__actions">
+          <a class="primary-btn" href="#catalogo">Ver catálogo</a>
+          <button class="link-btn" type="button" onclick="document.getElementById('rgb-lab').scrollIntoView({behavior:'smooth'})">Testar painel RGB</button>
         </div>
-        <div class="stats-grid" aria-label="Resumo do catálogo">
-          <div class="stat-card">
-            <p class="label">Cores no catálogo</p>
+
+        <div class="stats">
+          <div class="stat">
+            <p class="label">Cores mapeadas</p>
             <p class="value" id="stat-total">0</p>
           </div>
-          <div class="stat-card">
+          <div class="stat">
             <p class="label">Pigmentos únicos</p>
             <p class="value" id="stat-pigmentos">0</p>
           </div>
-          <div class="stat-card">
-            <p class="label">Marcas mapeadas</p>
+          <div class="stat">
+            <p class="label">Marcas</p>
             <p class="value" id="stat-marcas">0</p>
           </div>
         </div>
       </div>
-      <div class="hero__panel" aria-hidden="true">
-        <div class="panel-title">Visualização fiel</div>
-        <div class="swatch-grid">
-          <div class="swatch" style="--color:#0f3057"></div>
-          <div class="swatch" style="--color:#e8b21a"></div>
-          <div class="swatch" style="--color:#b13a2d"></div>
-          <div class="swatch" style="--color:#4a6b46"></div>
-          <div class="swatch" style="--color:#bb2467"></div>
-          <div class="swatch" style="--color:#4499c5"></div>
-          <div class="swatch" style="--color:#f2f2f2"></div>
-          <div class="swatch" style="--color:#1f7c6d"></div>
+
+      <div class="hero__panel" aria-labelledby="busca-title">
+        <div class="panel__header">
+          <div>
+            <p class="badge badge--muted">Busca guiada</p>
+            <h2 id="busca-title">Pesquise por pigmento, marca ou acabamento</h2>
+          </div>
+          <p class="microcopy">Nós destacamos a melhor correspondência e mantemos as opções organizadas.</p>
         </div>
-        <p class="subtitle">Cartela chapada, sem gradientes para manter a leitura de pigmentos e marcas.</p>
+
+        <div class="search-input">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 10-.71.71l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+          </svg>
+          <input id="busca" type="search" placeholder="Ex.: PB29, ultramar, cádmio" aria-label="Buscar tinta" />
+        </div>
+
+        <div class="filters">
+          <label class="field">
+            <span>Marca</span>
+            <select id="marca">
+              <option value="">Todas</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Pigmento</span>
+            <select id="pigmento">
+              <option value="">Todos</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Ligante</span>
+            <select id="ligante">
+              <option value="">Todos</option>
+              <option value="óleo de linhaça">Óleo de linhaça</option>
+              <option value="óleo de noz">Óleo de noz</option>
+              <option value="óleo de cártamo">Óleo de cártamo</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Opacidade</span>
+            <select id="opacidade">
+              <option value="">Todas</option>
+              <option value="transparente">Transparente</option>
+              <option value="semi-transparente">Semi-transparente</option>
+              <option value="semi-opaca">Semi-opaca</option>
+              <option value="opaca">Opaca</option>
+            </select>
+          </label>
+        </div>
+        <p class="microcopy">Dica: clique em uma cor do painel RGB ou digite um pigmento para começar.</p>
       </div>
     </section>
 
-    <section class="rgb-lab" aria-labelledby="rgb-lab-title">
-      <div class="rgb-lab__header">
+    <section id="rgb-lab" class="surface rgb-section" aria-labelledby="rgb-title">
+      <div class="section-head">
         <div>
           <p class="badge">Painel RGB</p>
-          <h2 id="rgb-lab-title">Inspecione e descubra cores com o mouse</h2>
-          <p class="subtitle">Passe o mouse sobre o painel, clique para pegar a cor mais próxima no catálogo e veja ano de criação ou descoberta.</p>
+          <h2 id="rgb-title">Inspecione, clique e a gente preenche o filtro</h2>
+          <p class="lede">Passe o mouse pelo mapa, veja o RGB/Hex em tempo real e clique para filtrar o catálogo com a cor
+            mais próxima.</p>
         </div>
-        <div class="rgb-meta">
+        <div class="pillboard">
           <div>
             <p class="label">RGB</p>
             <p class="value" id="rgb-value">-</p>
@@ -123,22 +122,24 @@
           <div>
             <p class="label">Cor mais próxima</p>
             <p class="value" id="closest-name">-</p>
-            <p class="mini" id="closest-date"></p>
+            <p class="microcopy" id="closest-date"></p>
           </div>
         </div>
       </div>
-      <div class="rgb-lab__body">
+
+      <div class="rgb-grid">
         <canvas id="rgb-map" width="520" height="260" aria-label="Painel RGB para inspeção"></canvas>
         <div class="rgb-details" id="rgb-details">Passe o mouse para ver detalhes.</div>
       </div>
     </section>
 
-    <section id="catalogo" class="catalog">
-      <header class="section-header">
+    <section id="catalogo" class="catalog" aria-labelledby="catalogo-title">
+      <header class="section-head">
         <div>
-          <p class="badge">Sugestões curadas</p>
-          <h2>Explorar tintas</h2>
-          <p class="subtitle">Compare pigmentos, marcas, ligantes e permanência antes de comprar.</p>
+          <p class="badge badge--muted">Curadoria de tintas</p>
+          <h2 id="catalogo-title">Compare pigmentos, ligantes e permanência</h2>
+          <p class="lede">Veja como cada marca interpreta a mesma base de pigmento e abra a ficha técnica sem sair da página.
+          </p>
         </div>
         <div class="pill" id="resultado-count">0 resultados</div>
       </header>
@@ -146,42 +147,45 @@
       <div id="cards" class="grid"></div>
     </section>
 
-    <section id="como-usar" class="info">
-      <div>
-        <h3>Como usar</h3>
+    <section class="info-grid">
+      <article class="surface">
+        <h3>Como tirar melhor proveito</h3>
         <ul>
-          <li>Digite um pigmento (ex.: PB29) para ver variações por marca.</li>
-          <li>Filtre por opacidade e ligante para controlar tempo de secagem.</li>
-          <li>Abra a ficha técnica para confirmar série e permanência.</li>
+          <li>Comece buscando um pigmento (ex.: PB29) e observe variações por marca.</li>
+          <li>Use o filtro de ligante para prever tempo de secagem e amarelecimento.</li>
+          <li>Ao clicar em uma cor do catálogo, veja RGB e abra a ficha técnica para detalhes.</li>
         </ul>
-      </div>
-      <div>
-        <h3>Curadoria</h3>
-        <p>Os dados abaixo são demonstrativos e seguem a convenção internacional de pigmentos para facilitar a busca.</p>
-        <p>Adicione mais marcas ou cores editando o array em <code>script.js</code>.</p>
-      </div>
-    </section>
-
-    <section id="faq" class="faq">
-      <h3>Perguntas frequentes</h3>
-      <details>
-        <summary>Os pigmentos são confiáveis?</summary>
-        <p>Sim, as siglas seguem a nomenclatura do Colour Index (ex.: PB29 - Ultramarine Blue).</p>
-      </details>
-      <details>
-        <summary>Posso baixar o catálogo?</summary>
-        <p>Este é um protótipo local. Basta salvar o HTML ou publicar em um host estático.</p>
-      </details>
-      <details>
-        <summary>Há suporte a novas marcas?</summary>
-        <p>Sim, basta inserir novos objetos no array <code>paints</code> em <code>script.js</code> com os campos existentes.</p>
-      </details>
+      </article>
+      <article class="surface">
+        <h3>Por que esse formato?</h3>
+        <p class="lede">Organizamos os cartões com hierarquia clara, para que pigmento, opacidade e ligante apareçam primeiro.
+          O painel RGB ajuda a chegar rápido ao tom ideal sem depender de gradientes.</p>
+      </article>
+      <article id="faq" class="surface faq">
+        <h3>Perguntas rápidas</h3>
+        <details open>
+          <summary>Os pigmentos são confiáveis?</summary>
+          <p>Sim, as siglas seguem a nomenclatura do Colour Index (ex.: PB29 - Ultramarine Blue).</p>
+        </details>
+        <details>
+          <summary>Posso baixar o catálogo?</summary>
+          <p>É um protótipo local. Você pode salvar o HTML ou publicar em um host estático.</p>
+        </details>
+        <details>
+          <summary>Há suporte a novas marcas?</summary>
+          <p>Sim, basta inserir novos objetos no array <code>paints</code> em <code>script.js</code> com os campos existentes.
+          </p>
+        </details>
+      </article>
     </section>
   </main>
 
   <footer class="footer">
-    <p>Feito para facilitar a vida de quem mistura cores no ateliê.</p>
-    <p class="small">Dados fictícios para demonstração.</p>
+    <div>
+      <p>Feito para quem precisa comparar tintas com clareza.</p>
+      <p class="small">Dados fictícios para demonstração.</p>
+    </div>
+    <a class="ghost-btn" href="#hero-title">Voltar ao topo</a>
   </footer>
 
   <script src="script.js"></script>
