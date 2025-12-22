@@ -301,27 +301,58 @@ function renderCards(list) {
   list.forEach((paint) => {
     const card = document.createElement('article');
     card.className = 'card';
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-expanded', 'false');
     card.innerHTML = `
-      <div class="card__swatch" style="--color:${paint.color}"></div>
-      <div class="card__body">
-        <div class="card__meta">
-          <span class="tag">${paint.brand}</span>
-          <span class="tag">${paint.pigment}</span>
-          <span class="tag">${paint.opacity}</span>
+      <div class="card__top">
+        <div class="card__swatch" style="--color:${paint.color}"></div>
+        <div class="card__body">
+          <div class="card__meta">
+            <span class="tag">${paint.brand}</span>
+            <span class="tag">${paint.pigment}</span>
+          </div>
+          <h4>${paint.name}</h4>
+          <p class="subtitle">Opacidade ${paint.opacity} • RGB ${paint.color.toUpperCase()}</p>
         </div>
-        <h4>${paint.name}</h4>
-        <div class="card__tags">
-          <span class="tag">Ligante: ${paint.binder}</span>
-          <span class="tag">Permanência: ${paint.lightfastness}</span>
-          <span class="tag">Descoberta: ${paint.discovery}</span>
-        </div>
+        <span class="tag">${paint.opacity}</span>
+      </div>
+      <div class="card__details" hidden>
+        <span class="tag">Ligante: ${paint.binder}</span>
+        <span class="tag">Permanência: ${paint.lightfastness}</span>
+        <span class="tag">Descoberta: ${paint.discovery}</span>
         <p class="subtitle">${paint.notes}</p>
         <div class="card__footer">
-          <span class="tag">RGB: ${paint.color.toUpperCase()}</span>
           <a class="tag tag--link" href="${paint.url}" target="_blank" rel="noreferrer">Abrir ficha técnica</a>
         </div>
       </div>
     `;
+
+    const details = card.querySelector('.card__details');
+
+    const toggleDetails = () => {
+      const isHidden = details.hasAttribute('hidden');
+
+      document.querySelectorAll('.card').forEach((item) => {
+        item.classList.remove('card--open');
+        item.setAttribute('aria-expanded', 'false');
+      });
+      document.querySelectorAll('.card__details').forEach((item) => item.setAttribute('hidden', ''));
+
+      if (isHidden) {
+        details.removeAttribute('hidden');
+        card.classList.add('card--open');
+        card.setAttribute('aria-expanded', 'true');
+      }
+    };
+
+    card.addEventListener('click', toggleDetails);
+    card.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleDetails();
+      }
+    });
 
     fragment.appendChild(card);
   });
