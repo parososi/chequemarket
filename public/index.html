@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loteria Caixa Virtual</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Loterias Caixa • Atualizações automáticas</p>
+      <h1>Loteria virtual para simular apostas e conferir resultados reais</h1>
+      <p class="lead">Escolha a modalidade, veja as regras oficiais, valores mínimos e compare os seus números com concursos reais.</p>
+      <div class="hero-meta">
+        <span class="pill">Dados oficiais publicados pela Caixa</span>
+        <span class="pill pill-alt">Inclui +Milionária, Mega-Sena, Quina e mais</span>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h2>Como funciona?</h2>
+      <ol>
+        <li>Selecione a modalidade da loteria.</li>
+        <li>Confira regras, preço mínimo e dezenas exigidas.</li>
+        <li>Digite seus números e veja imediatamente o tipo de premiação que teria no último concurso.</li>
+      </ol>
+      <p class="small">Os resultados são baixados automaticamente do endpoint público da Caixa e salvos em <code>contests.json</code>.</p>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">Modalidades</p>
+          <h2>Escolha sua aposta</h2>
+        </div>
+        <div class="select-wrapper">
+          <label for="modality" class="label">Modalidade</label>
+          <select id="modality"></select>
+        </div>
+      </div>
+
+      <div class="cards" id="rules"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">Concurso de referência</p>
+          <h2>Último sorteio e checagem</h2>
+        </div>
+        <div class="meta" id="generatedAt"></div>
+      </div>
+
+      <div class="contest-grid">
+        <div class="contest-card" id="contestDetails"></div>
+        <div class="contest-card">
+          <h3>Digite os seus números</h3>
+          <p class="small">Separe por vírgula ou espaço. Ex.: <code>01, 05, 10, 22</code>. Para +Milionária inclua os trevos no campo dedicado.</p>
+          <div class="input-group">
+            <label for="numbers" class="label">Dezenas escolhidas</label>
+            <input id="numbers" type="text" placeholder="01, 05, 10..." />
+          </div>
+          <div class="input-group" id="trevosGroup" hidden>
+            <label for="trevos" class="label">Trevos (+Milionária)</label>
+            <input id="trevos" type="text" placeholder="1, 4" />
+          </div>
+          <button id="checkBtn" class="btn">Conferir resultado</button>
+          <div id="result" class="result"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Valores e regras resumidos das Loterias Caixa. Consulte o site oficial para preços promocionais ou regras adicionais.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
