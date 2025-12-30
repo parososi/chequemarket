@@ -43,7 +43,7 @@ def main():
         url = f"https://servicebus2.caixa.gov.br/portaldeloterias/api/{modality}"
         payload = fetch_json(url)
         snapshot["modalities"][modality] = parse_contest(modality, payload)
-    with open("public/contests.json", "w", encoding="utf-8") as fp:
+    with open("contests.json", "w", encoding="utf-8") as fp:
         json.dump(snapshot, fp, ensure_ascii=False, indent=2)
 
 
