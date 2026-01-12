@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eu te amo, Raissa</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="aurora"></div>
+    <div class="noise"></div>
+
+    <header class="hero">
+      <p class="badge">euteamoraissa.com</p>
+      <h1>Feliz aniversário, Raissa! 🎉</h1>
+      <p>
+        Esse é o meu cantinho psicodélico-romântico para celebrar você. Envie UMA foto
+        linda sua e deixa o site brincar com ela.
+      </p>
+    </header>
+
+    <main class="content">
+      <section class="card upload">
+        <h2>Suba sua foto favorita</h2>
+        <p>
+          Escolha apenas uma imagem. Depois, toque em “Brincar de novo” para gerar
+          uma nova versão fofinha, divertida e apaixonada.
+        </p>
+        <label class="upload-button" for="photoInput">
+          💖 Enviar foto da Raissa
+        </label>
+        <input
+          id="photoInput"
+          type="file"
+          accept="image/*"
+          aria-label="Enviar foto da Raissa"
+        />
+        <p class="hint" id="uploadHint">Nenhuma foto selecionada.</p>
+      </section>
+
+      <section class="card playground">
+        <div class="canvas-wrap">
+          <canvas id="artCanvas" width="900" height="900"></canvas>
+        </div>
+        <div class="controls">
+          <button id="playButton" class="primary" disabled>
+            ✨ Brincar de novo
+          </button>
+          <button id="downloadButton" class="secondary" disabled>
+            📸 Baixar lembrança
+          </button>
+        </div>
+        <p class="caption" id="caption">
+          Envie uma foto para ver a magia acontecer.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Feito com carinho infinito, só para você. 💘
+      </p>
+    </footer>
+
+    <template id="heartTemplate">
+      <span class="tap-heart">💗</span>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
