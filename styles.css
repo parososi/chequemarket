@@ -24,17 +24,57 @@ body {
   position: fixed;
   inset: -20% -20% auto;
   height: 60vh;
-  background: conic-gradient(
-    from 90deg,
-    rgba(255, 122, 217, 0.65),
-    rgba(77, 216, 255, 0.45),
-    rgba(140, 82, 255, 0.55),
-    rgba(255, 122, 217, 0.65)
-  );
-  filter: blur(70px);
-  animation: swirl 18s ease-in-out infinite alternate;
+  background-image: radial-gradient(
+      circle at 20% 30%,
+      rgba(255, 122, 217, 0.7),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 70% 20%,
+      rgba(77, 216, 255, 0.6),
+      transparent 62%
+    ),
+    radial-gradient(
+      circle at 50% 80%,
+      rgba(140, 82, 255, 0.65),
+      transparent 65%
+    ),
+    conic-gradient(
+      from 90deg,
+      rgba(255, 122, 217, 0.75),
+      rgba(77, 216, 255, 0.6),
+      rgba(140, 82, 255, 0.7),
+      rgba(255, 122, 217, 0.75)
+    );
+  filter: blur(60px) saturate(1.4);
+  animation: swirl 14s ease-in-out infinite alternate;
   z-index: 0;
   pointer-events: none;
+}
+
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+      circle at 30% 40%,
+      rgba(126, 255, 217, 0.35),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 70% 60%,
+      rgba(255, 200, 120, 0.3),
+      transparent 58%
+    );
+  animation: shimmer 9s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+}
+
+.aurora::after {
+  animation-delay: -4s;
+  opacity: 0.8;
+  filter: blur(30px);
 }
 
 .noise {
@@ -203,11 +243,12 @@ button:hover:not(:disabled) {
   opacity: 0.8;
 }
 
-.tap-heart {
+.tap-flower {
   position: absolute;
   font-size: 24px;
   animation: floatUp 1.6s ease-out forwards;
   pointer-events: none;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
 }
 
 @keyframes swirl {
@@ -216,6 +257,15 @@ button:hover:not(:disabled) {
   }
   100% {
     transform: translate(10%, 10%) rotate(180deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translate(-6%, -4%) rotate(-8deg);
+  }
+  100% {
+    transform: translate(8%, 6%) rotate(12deg);
   }
 }
 
