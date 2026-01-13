@@ -6,7 +6,7 @@
     <title>Feliz Aniversário Raissa</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body data-stage="0">
     <canvas id="confetti" aria-hidden="true"></canvas>
     <div id="balloons" aria-hidden="true"></div>
 
@@ -16,102 +16,121 @@
       </header>
 
       <section class="stage" aria-live="polite">
+        <div class="sparkles" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
         <div class="animals" aria-hidden="true">
-          <div class="animal" style="--i: 0">
-            <svg viewBox="0 0 120 120" role="img" aria-label="Ursinho fofo">
-              <circle cx="60" cy="60" r="38" fill="#d9a16f" />
-              <circle cx="30" cy="32" r="16" fill="#d9a16f" />
-              <circle cx="90" cy="32" r="16" fill="#d9a16f" />
-              <circle cx="30" cy="32" r="8" fill="#f6d3b1" />
-              <circle cx="90" cy="32" r="8" fill="#f6d3b1" />
-              <circle cx="46" cy="60" r="6" fill="#3b2f2f" />
-              <circle cx="74" cy="60" r="6" fill="#3b2f2f" />
-              <circle cx="60" cy="74" r="8" fill="#f6d3b1" />
-              <circle cx="58" cy="72" r="3" fill="#3b2f2f" />
-              <circle cx="62" cy="72" r="3" fill="#3b2f2f" />
-              <path d="M52 82 Q60 88 68 82" stroke="#3b2f2f" stroke-width="3" fill="none" />
-            </svg>
+          <div class="animal" data-stage="0" data-species="bear" data-dance="spin" style="--angle: 0deg; --radius: clamp(130px, 28vw, 180px)">
+            <div class="animal-inner">
+              <svg viewBox="0 0 120 120" role="img" aria-label="Ursinho fofo">
+                <circle cx="60" cy="60" r="38" fill="#d9a16f" />
+                <circle cx="30" cy="32" r="16" fill="#d9a16f" />
+                <circle cx="90" cy="32" r="16" fill="#d9a16f" />
+                <circle cx="30" cy="32" r="8" fill="#f6d3b1" />
+                <circle cx="90" cy="32" r="8" fill="#f6d3b1" />
+                <circle cx="46" cy="60" r="6" fill="#3b2f2f" />
+                <circle cx="74" cy="60" r="6" fill="#3b2f2f" />
+                <circle cx="60" cy="74" r="8" fill="#f6d3b1" />
+                <circle cx="58" cy="72" r="3" fill="#3b2f2f" />
+                <circle cx="62" cy="72" r="3" fill="#3b2f2f" />
+                <path d="M52 82 Q60 88 68 82" stroke="#3b2f2f" stroke-width="3" fill="none" />
+              </svg>
+            </div>
           </div>
-          <div class="animal" style="--i: 1">
-            <svg viewBox="0 0 120 120" role="img" aria-label="Unicórnio fofo">
-              <circle cx="60" cy="68" r="34" fill="#cfe8ff" />
-              <circle cx="40" cy="56" r="8" fill="#203040" />
-              <circle cx="80" cy="56" r="8" fill="#203040" />
-              <circle cx="60" cy="74" r="10" fill="#f9c7d9" />
-              <path d="M52 84 Q60 90 68 84" stroke="#203040" stroke-width="3" fill="none" />
-              <polygon points="60,8 52,40 68,40" fill="#f5d76b" />
-              <path d="M30 40 Q60 20 90 40" fill="#f9c7d9" />
-            </svg>
+          <div class="animal" data-stage="0" data-species="unicorn" data-dance="shimmy" style="--angle: 90deg; --radius: clamp(130px, 28vw, 180px)">
+            <div class="animal-inner">
+              <svg viewBox="0 0 120 120" role="img" aria-label="Unicórnio fofo">
+                <circle cx="60" cy="68" r="34" fill="#cfe8ff" />
+                <circle cx="40" cy="56" r="8" fill="#203040" />
+                <circle cx="80" cy="56" r="8" fill="#203040" />
+                <circle cx="60" cy="74" r="10" fill="#f9c7d9" />
+                <path d="M52 84 Q60 90 68 84" stroke="#203040" stroke-width="3" fill="none" />
+                <polygon points="60,8 52,40 68,40" fill="#f5d76b" />
+                <path d="M30 40 Q60 20 90 40" fill="#f9c7d9" />
+              </svg>
+            </div>
           </div>
-          <div class="animal" style="--i: 2">
-            <svg viewBox="0 0 120 120" role="img" aria-label="Cachorrinho fofo">
-              <circle cx="60" cy="68" r="34" fill="#f1c27d" />
-              <circle cx="28" cy="58" r="16" fill="#e0a15a" />
-              <circle cx="92" cy="58" r="16" fill="#e0a15a" />
-              <circle cx="44" cy="64" r="6" fill="#2f2f2f" />
-              <circle cx="76" cy="64" r="6" fill="#2f2f2f" />
-              <circle cx="60" cy="78" r="10" fill="#fff" />
-              <circle cx="60" cy="76" r="4" fill="#2f2f2f" />
-              <path d="M52 86 Q60 92 68 86" stroke="#2f2f2f" stroke-width="3" fill="none" />
-            </svg>
+          <div class="animal" data-stage="0" data-species="dog" data-dance="bounce" style="--angle: 180deg; --radius: clamp(130px, 28vw, 180px)">
+            <div class="animal-inner">
+              <svg viewBox="0 0 120 120" role="img" aria-label="Cachorrinho fofo">
+                <circle cx="60" cy="68" r="34" fill="#f1c27d" />
+                <circle cx="28" cy="58" r="16" fill="#e0a15a" />
+                <circle cx="92" cy="58" r="16" fill="#e0a15a" />
+                <circle cx="44" cy="64" r="6" fill="#2f2f2f" />
+                <circle cx="76" cy="64" r="6" fill="#2f2f2f" />
+                <circle cx="60" cy="78" r="10" fill="#fff" />
+                <circle cx="60" cy="76" r="4" fill="#2f2f2f" />
+                <path d="M52 86 Q60 92 68 86" stroke="#2f2f2f" stroke-width="3" fill="none" />
+              </svg>
+            </div>
           </div>
-          <div class="animal" style="--i: 3">
-            <svg viewBox="0 0 120 120" role="img" aria-label="Gatinho fofo">
-              <circle cx="60" cy="70" r="34" fill="#ffe1a8" />
-              <polygon points="30,48 20,20 44,34" fill="#ffe1a8" />
-              <polygon points="90,48 100,20 76,34" fill="#ffe1a8" />
-              <circle cx="46" cy="68" r="6" fill="#2b2b2b" />
-              <circle cx="74" cy="68" r="6" fill="#2b2b2b" />
-              <circle cx="60" cy="80" r="8" fill="#f4b2c0" />
-              <path d="M54 88 Q60 92 66 88" stroke="#2b2b2b" stroke-width="3" fill="none" />
-            </svg>
+          <div class="animal" data-stage="0" data-species="cat" data-dance="shimmy" style="--angle: 270deg; --radius: clamp(130px, 28vw, 180px)">
+            <div class="animal-inner">
+              <svg viewBox="0 0 120 120" role="img" aria-label="Gatinho fofo">
+                <circle cx="60" cy="70" r="34" fill="#ffe1a8" />
+                <polygon points="30,48 20,20 44,34" fill="#ffe1a8" />
+                <polygon points="90,48 100,20 76,34" fill="#ffe1a8" />
+                <circle cx="46" cy="68" r="6" fill="#2b2b2b" />
+                <circle cx="74" cy="68" r="6" fill="#2b2b2b" />
+                <circle cx="60" cy="80" r="8" fill="#f4b2c0" />
+                <path d="M54 88 Q60 92 66 88" stroke="#2b2b2b" stroke-width="3" fill="none" />
+              </svg>
+            </div>
           </div>
-          <div class="animal" style="--i: 4">
-            <svg viewBox="0 0 120 120" role="img" aria-label="Ursinho fofo">
-              <circle cx="60" cy="60" r="38" fill="#b0886f" />
-              <circle cx="30" cy="32" r="16" fill="#b0886f" />
-              <circle cx="90" cy="32" r="16" fill="#b0886f" />
-              <circle cx="30" cy="32" r="8" fill="#f3cfa8" />
-              <circle cx="90" cy="32" r="8" fill="#f3cfa8" />
-              <circle cx="46" cy="60" r="6" fill="#3b2f2f" />
-              <circle cx="74" cy="60" r="6" fill="#3b2f2f" />
-              <circle cx="60" cy="74" r="8" fill="#f3cfa8" />
-              <path d="M52 82 Q60 88 68 82" stroke="#3b2f2f" stroke-width="3" fill="none" />
-            </svg>
+          <div class="animal" data-stage="1" data-species="lion" data-dance="spin" style="--angle: 45deg; --radius: clamp(150px, 32vw, 200px)">
+            <div class="animal-inner">
+              <svg viewBox="0 0 120 120" role="img" aria-label="Leão fofo">
+                <circle cx="60" cy="62" r="36" fill="#f7c66b" />
+                <circle cx="60" cy="62" r="24" fill="#ffdba3" />
+                <circle cx="46" cy="60" r="6" fill="#4a2c1a" />
+                <circle cx="74" cy="60" r="6" fill="#4a2c1a" />
+                <circle cx="60" cy="74" r="8" fill="#f2a7b5" />
+                <path d="M52 84 Q60 90 68 84" stroke="#4a2c1a" stroke-width="3" fill="none" />
+              </svg>
+            </div>
           </div>
-          <div class="animal" style="--i: 5">
-            <svg viewBox="0 0 120 120" role="img" aria-label="Gatinho fofo">
-              <circle cx="60" cy="70" r="34" fill="#ffd6e8" />
-              <polygon points="30,48 20,20 44,34" fill="#ffd6e8" />
-              <polygon points="90,48 100,20 76,34" fill="#ffd6e8" />
-              <circle cx="46" cy="68" r="6" fill="#2b2b2b" />
-              <circle cx="74" cy="68" r="6" fill="#2b2b2b" />
-              <circle cx="60" cy="80" r="8" fill="#f4b2c0" />
-              <path d="M54 88 Q60 92 66 88" stroke="#2b2b2b" stroke-width="3" fill="none" />
-            </svg>
+          <div class="animal" data-stage="1" data-species="jaguar" data-dance="shimmy" style="--angle: 135deg; --radius: clamp(150px, 32vw, 200px)">
+            <div class="animal-inner">
+              <svg viewBox="0 0 120 120" role="img" aria-label="Oncinha fofa">
+                <circle cx="60" cy="68" r="34" fill="#ffd37a" />
+                <circle cx="44" cy="60" r="6" fill="#3b2f2f" />
+                <circle cx="76" cy="60" r="6" fill="#3b2f2f" />
+                <circle cx="60" cy="78" r="10" fill="#fff1c7" />
+                <circle cx="52" cy="46" r="4" fill="#b86d3c" />
+                <circle cx="70" cy="46" r="4" fill="#b86d3c" />
+                <circle cx="38" cy="72" r="4" fill="#b86d3c" />
+                <circle cx="82" cy="72" r="4" fill="#b86d3c" />
+                <path d="M52 88 Q60 92 68 88" stroke="#3b2f2f" stroke-width="3" fill="none" />
+              </svg>
+            </div>
           </div>
-          <div class="animal" style="--i: 6">
-            <svg viewBox="0 0 120 120" role="img" aria-label="Cachorrinho fofo">
-              <circle cx="60" cy="68" r="34" fill="#ffd39b" />
-              <circle cx="28" cy="58" r="16" fill="#f1b56c" />
-              <circle cx="92" cy="58" r="16" fill="#f1b56c" />
-              <circle cx="44" cy="64" r="6" fill="#2f2f2f" />
-              <circle cx="76" cy="64" r="6" fill="#2f2f2f" />
-              <circle cx="60" cy="78" r="10" fill="#fff" />
-              <circle cx="60" cy="76" r="4" fill="#2f2f2f" />
-              <path d="M52 86 Q60 92 68 86" stroke="#2f2f2f" stroke-width="3" fill="none" />
-            </svg>
+          <div class="animal" data-stage="2" data-species="fox" data-dance="bounce" style="--angle: 225deg; --radius: clamp(120px, 24vw, 160px)">
+            <div class="animal-inner">
+              <svg viewBox="0 0 120 120" role="img" aria-label="Raposa fofa">
+                <circle cx="60" cy="68" r="32" fill="#f5a46a" />
+                <polygon points="30,48 18,24 44,36" fill="#f5a46a" />
+                <polygon points="90,48 102,24 76,36" fill="#f5a46a" />
+                <circle cx="48" cy="64" r="6" fill="#2f2f2f" />
+                <circle cx="72" cy="64" r="6" fill="#2f2f2f" />
+                <circle cx="60" cy="78" r="8" fill="#fff" />
+                <path d="M52 86 Q60 90 68 86" stroke="#2f2f2f" stroke-width="3" fill="none" />
+              </svg>
+            </div>
           </div>
-          <div class="animal" style="--i: 7">
-            <svg viewBox="0 0 120 120" role="img" aria-label="Unicórnio fofo">
-              <circle cx="60" cy="68" r="34" fill="#e2d4ff" />
-              <circle cx="40" cy="56" r="8" fill="#203040" />
-              <circle cx="80" cy="56" r="8" fill="#203040" />
-              <circle cx="60" cy="74" r="10" fill="#f9c7d9" />
-              <path d="M52 84 Q60 90 68 84" stroke="#203040" stroke-width="3" fill="none" />
-              <polygon points="60,8 52,40 68,40" fill="#f5d76b" />
-              <path d="M30 40 Q60 20 90 40" fill="#f9c7d9" />
-            </svg>
+          <div class="animal" data-stage="2" data-species="panda" data-dance="spin" style="--angle: 315deg; --radius: clamp(120px, 24vw, 160px)">
+            <div class="animal-inner">
+              <svg viewBox="0 0 120 120" role="img" aria-label="Panda fofo">
+                <circle cx="60" cy="64" r="34" fill="#f4f4f4" />
+                <circle cx="36" cy="36" r="14" fill="#2f2f2f" />
+                <circle cx="84" cy="36" r="14" fill="#2f2f2f" />
+                <circle cx="44" cy="62" r="10" fill="#2f2f2f" />
+                <circle cx="76" cy="62" r="10" fill="#2f2f2f" />
+                <circle cx="44" cy="62" r="4" fill="#f4f4f4" />
+                <circle cx="76" cy="62" r="4" fill="#f4f4f4" />
+                <circle cx="60" cy="78" r="8" fill="#f1b6c1" />
+              </svg>
+            </div>
           </div>
         </div>
 
@@ -127,8 +146,6 @@
             <div class="candle lit" data-index="0"><span class="flame"></span></div>
             <div class="candle lit" data-index="1"><span class="flame"></span></div>
             <div class="candle lit" data-index="2"><span class="flame"></span></div>
-            <div class="candle lit" data-index="3"><span class="flame"></span></div>
-            <div class="candle lit" data-index="4"><span class="flame"></span></div>
           </div>
         </div>
       </section>
@@ -150,6 +167,24 @@
         FELIZ ANIVERSÁRIO MEU AMOR EU TE AMO!
       </section>
     </main>
+
+    <div class="modal hidden" id="letterModal" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal-backdrop" data-close="true"></div>
+      <div class="modal-card" role="document">
+        <button class="modal-close" type="button" aria-label="Fechar">×</button>
+        <p class="modal-note">
+          Mensagem fictícia feita com carinho (homenagem de fã).
+        </p>
+        <p class="modal-sender" id="modalSender"></p>
+        <div class="envelope" aria-hidden="true">
+          <div class="envelope-flap"></div>
+          <div class="envelope-body"></div>
+          <div class="letter">
+            <p id="modalMessage"></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="app.js"></script>
   </body>

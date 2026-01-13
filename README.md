@@ -17,4 +17,8 @@ Site estático em HTML, CSS e JavaScript (sem dependências) para publicar no Gi
 - `style.css`
 - `app.js`
 
+## Observação sobre mensagens
+
+As cartinhas exibem **mensagens fictícias de homenagem**, inspiradas no estilo dos artistas listados, mas não representam mensagens oficiais reais.
+
 > O microfone precisa de HTTPS no navegador. Localmente, o botão de fallback permite apagar as velas.
