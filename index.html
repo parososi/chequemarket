@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Feliz Aniversário Raissa</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas id="confetti" aria-hidden="true"></canvas>
+    <div id="balloons" aria-hidden="true"></div>
+
+    <main class="page">
+      <header class="hero">
+        <p class="title">Raissa ❤️</p>
+      </header>
+
+      <section class="stage" aria-live="polite">
+        <div class="animals" aria-hidden="true">
+          <div class="animal" style="--i: 0">
+            <svg viewBox="0 0 120 120" role="img" aria-label="Ursinho fofo">
+              <circle cx="60" cy="60" r="38" fill="#d9a16f" />
+              <circle cx="30" cy="32" r="16" fill="#d9a16f" />
+              <circle cx="90" cy="32" r="16" fill="#d9a16f" />
+              <circle cx="30" cy="32" r="8" fill="#f6d3b1" />
+              <circle cx="90" cy="32" r="8" fill="#f6d3b1" />
+              <circle cx="46" cy="60" r="6" fill="#3b2f2f" />
+              <circle cx="74" cy="60" r="6" fill="#3b2f2f" />
+              <circle cx="60" cy="74" r="8" fill="#f6d3b1" />
+              <circle cx="58" cy="72" r="3" fill="#3b2f2f" />
+              <circle cx="62" cy="72" r="3" fill="#3b2f2f" />
+              <path d="M52 82 Q60 88 68 82" stroke="#3b2f2f" stroke-width="3" fill="none" />
+            </svg>
+          </div>
+          <div class="animal" style="--i: 1">
+            <svg viewBox="0 0 120 120" role="img" aria-label="Unicórnio fofo">
+              <circle cx="60" cy="68" r="34" fill="#cfe8ff" />
+              <circle cx="40" cy="56" r="8" fill="#203040" />
+              <circle cx="80" cy="56" r="8" fill="#203040" />
+              <circle cx="60" cy="74" r="10" fill="#f9c7d9" />
+              <path d="M52 84 Q60 90 68 84" stroke="#203040" stroke-width="3" fill="none" />
+              <polygon points="60,8 52,40 68,40" fill="#f5d76b" />
+              <path d="M30 40 Q60 20 90 40" fill="#f9c7d9" />
+            </svg>
+          </div>
+          <div class="animal" style="--i: 2">
+            <svg viewBox="0 0 120 120" role="img" aria-label="Cachorrinho fofo">
+              <circle cx="60" cy="68" r="34" fill="#f1c27d" />
+              <circle cx="28" cy="58" r="16" fill="#e0a15a" />
+              <circle cx="92" cy="58" r="16" fill="#e0a15a" />
+              <circle cx="44" cy="64" r="6" fill="#2f2f2f" />
+              <circle cx="76" cy="64" r="6" fill="#2f2f2f" />
+              <circle cx="60" cy="78" r="10" fill="#fff" />
+              <circle cx="60" cy="76" r="4" fill="#2f2f2f" />
+              <path d="M52 86 Q60 92 68 86" stroke="#2f2f2f" stroke-width="3" fill="none" />
+            </svg>
+          </div>
+          <div class="animal" style="--i: 3">
+            <svg viewBox="0 0 120 120" role="img" aria-label="Gatinho fofo">
+              <circle cx="60" cy="70" r="34" fill="#ffe1a8" />
+              <polygon points="30,48 20,20 44,34" fill="#ffe1a8" />
+              <polygon points="90,48 100,20 76,34" fill="#ffe1a8" />
+              <circle cx="46" cy="68" r="6" fill="#2b2b2b" />
+              <circle cx="74" cy="68" r="6" fill="#2b2b2b" />
+              <circle cx="60" cy="80" r="8" fill="#f4b2c0" />
+              <path d="M54 88 Q60 92 66 88" stroke="#2b2b2b" stroke-width="3" fill="none" />
+            </svg>
+          </div>
+          <div class="animal" style="--i: 4">
+            <svg viewBox="0 0 120 120" role="img" aria-label="Ursinho fofo">
+              <circle cx="60" cy="60" r="38" fill="#b0886f" />
+              <circle cx="30" cy="32" r="16" fill="#b0886f" />
+              <circle cx="90" cy="32" r="16" fill="#b0886f" />
+              <circle cx="30" cy="32" r="8" fill="#f3cfa8" />
+              <circle cx="90" cy="32" r="8" fill="#f3cfa8" />
+              <circle cx="46" cy="60" r="6" fill="#3b2f2f" />
+              <circle cx="74" cy="60" r="6" fill="#3b2f2f" />
+              <circle cx="60" cy="74" r="8" fill="#f3cfa8" />
+              <path d="M52 82 Q60 88 68 82" stroke="#3b2f2f" stroke-width="3" fill="none" />
+            </svg>
+          </div>
+          <div class="animal" style="--i: 5">
+            <svg viewBox="0 0 120 120" role="img" aria-label="Gatinho fofo">
+              <circle cx="60" cy="70" r="34" fill="#ffd6e8" />
+              <polygon points="30,48 20,20 44,34" fill="#ffd6e8" />
+              <polygon points="90,48 100,20 76,34" fill="#ffd6e8" />
+              <circle cx="46" cy="68" r="6" fill="#2b2b2b" />
+              <circle cx="74" cy="68" r="6" fill="#2b2b2b" />
+              <circle cx="60" cy="80" r="8" fill="#f4b2c0" />
+              <path d="M54 88 Q60 92 66 88" stroke="#2b2b2b" stroke-width="3" fill="none" />
+            </svg>
+          </div>
+          <div class="animal" style="--i: 6">
+            <svg viewBox="0 0 120 120" role="img" aria-label="Cachorrinho fofo">
+              <circle cx="60" cy="68" r="34" fill="#ffd39b" />
+              <circle cx="28" cy="58" r="16" fill="#f1b56c" />
+              <circle cx="92" cy="58" r="16" fill="#f1b56c" />
+              <circle cx="44" cy="64" r="6" fill="#2f2f2f" />
+              <circle cx="76" cy="64" r="6" fill="#2f2f2f" />
+              <circle cx="60" cy="78" r="10" fill="#fff" />
+              <circle cx="60" cy="76" r="4" fill="#2f2f2f" />
+              <path d="M52 86 Q60 92 68 86" stroke="#2f2f2f" stroke-width="3" fill="none" />
+            </svg>
+          </div>
+          <div class="animal" style="--i: 7">
+            <svg viewBox="0 0 120 120" role="img" aria-label="Unicórnio fofo">
+              <circle cx="60" cy="68" r="34" fill="#e2d4ff" />
+              <circle cx="40" cy="56" r="8" fill="#203040" />
+              <circle cx="80" cy="56" r="8" fill="#203040" />
+              <circle cx="60" cy="74" r="10" fill="#f9c7d9" />
+              <path d="M52 84 Q60 90 68 84" stroke="#203040" stroke-width="3" fill="none" />
+              <polygon points="60,8 52,40 68,40" fill="#f5d76b" />
+              <path d="M30 40 Q60 20 90 40" fill="#f9c7d9" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="cake" role="img" aria-label="Bolo de aniversário com velas">
+          <div class="plate"></div>
+          <div class="cake-base">
+            <div class="icing"></div>
+            <div class="drip"></div>
+            <div class="drip"></div>
+            <div class="drip"></div>
+          </div>
+          <div class="candles" aria-hidden="true">
+            <div class="candle lit" data-index="0"><span class="flame"></span></div>
+            <div class="candle lit" data-index="1"><span class="flame"></span></div>
+            <div class="candle lit" data-index="2"><span class="flame"></span></div>
+            <div class="candle lit" data-index="3"><span class="flame"></span></div>
+            <div class="candle lit" data-index="4"><span class="flame"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="controls">
+        <p class="instruction">
+          Assopre no microfone para apagar as velas 🎂💨
+        </p>
+        <div class="meter" aria-hidden="true">
+          <div class="meter-fill" id="meterFill"></div>
+        </div>
+        <button class="btn" id="micButton">Ativar Microfone</button>
+        <button class="btn btn-secondary hidden" id="fallbackButton">
+          Toque para apagar
+        </button>
+      </section>
+
+      <section class="message" id="message" aria-live="polite">
+        FELIZ ANIVERSÁRIO MEU AMOR EU TE AMO!
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
