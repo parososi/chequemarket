@@ -49,6 +49,11 @@ body {
   transition: opacity 0.6s ease;
 }
 
+body[data-stage="2"] #balloons,
+body[data-stage="3"] #balloons {
+  opacity: 1;
+}
+
 .page {
   width: min(100%, var(--max-width));
   display: flex;
@@ -74,6 +79,90 @@ body {
   justify-content: center;
 }
 
+.sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.sparkles span {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, #fff7d6 0%, rgba(255, 255, 255, 0) 70%);
+  animation: sparkle 2s ease-out forwards;
+}
+
+.sparkles span:nth-child(1) {
+  top: 18%;
+  left: 50%;
+}
+
+.sparkles span:nth-child(2) {
+  top: 30%;
+  left: 20%;
+}
+
+.sparkles span:nth-child(3) {
+  top: 40%;
+  left: 78%;
+}
+
+.sparkles span:nth-child(4) {
+  top: 58%;
+  left: 14%;
+}
+
+.sparkles span:nth-child(5) {
+  top: 62%;
+  left: 82%;
+}
+
+.sparkles span:nth-child(6) {
+  top: 20%;
+  left: 68%;
+}
+
+.sparkles span:nth-child(7) {
+  top: 70%;
+  left: 38%;
+}
+
+.sparkles span:nth-child(8) {
+  top: 46%;
+  left: 34%;
+}
+
+.sparkles span:nth-child(9) {
+  top: 24%;
+  left: 32%;
+}
+
+.sparkles span:nth-child(10) {
+  top: 48%;
+  left: 58%;
+}
+
+.sparkles.active {
+  opacity: 1;
+}
+
+@keyframes sparkle {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+}
+
 .animals {
   position: absolute;
   inset: 0;
@@ -81,13 +170,25 @@ body {
 
 .animal {
   position: absolute;
-  width: clamp(48px, 12vw, 80px);
-  height: clamp(48px, 12vw, 80px);
+  width: clamp(54px, 13vw, 86px);
+  height: clamp(54px, 13vw, 86px);
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%) rotate(calc(var(--i) * 45deg))
-    translateY(calc(-1 * clamp(130px, 28vw, 180px)));
-  transition: transform 0.4s ease;
+  --scale: 1;
+  --pop-y: 0px;
+  --blur: 0px;
+  transform: translate(-50%, -50%) rotate(var(--angle))
+    translateY(calc(-1 * var(--radius))) scale(var(--scale))
+    translateY(var(--pop-y));
+  transition: transform 0.4s ease, filter 0.4s ease;
+  filter: blur(var(--blur));
+  opacity: 0;
+  pointer-events: none;
+}
+
+.animal-inner {
+  width: 100%;
+  height: 100%;
 }
 
 .animal svg {
@@ -95,21 +196,183 @@ body {
   height: 100%;
 }
 
-body.celebration .animal {
-  animation: dance 1s ease-in-out infinite;
+body[data-stage="0"] .animal[data-stage="0"],
+body[data-stage="1"] .animal[data-stage="0"],
+body[data-stage="1"] .animal[data-stage="1"],
+body[data-stage="2"] .animal[data-stage="0"],
+body[data-stage="2"] .animal[data-stage="1"],
+body[data-stage="2"] .animal[data-stage="2"],
+body[data-stage="3"] .animal {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-@keyframes dance {
+body[data-stage="1"] .animal-inner {
+  animation: dance-soft 2s ease-in-out infinite;
+}
+
+body[data-stage="1"] .animal[data-stage="1"] {
+  animation: arrive 1s ease-out both;
+}
+
+body[data-stage="2"] .animal-inner {
+  animation: dance-bounce 1.6s ease-in-out infinite;
+}
+
+body[data-stage="2"] .animal[data-dance="spin"] .animal-inner {
+  animation: dance-spin 1.8s ease-in-out infinite;
+}
+
+body[data-stage="2"] .animal[data-dance="shimmy"] .animal-inner {
+  animation: dance-shimmy 1.2s ease-in-out infinite;
+}
+
+body[data-stage="2"] .animal[data-dance="bounce"] .animal-inner {
+  animation: dance-bounce 1.2s ease-in-out infinite;
+}
+
+body[data-stage="3"] .animal.dance-1 .animal-inner {
+  animation: party-spin 1.4s ease-in-out infinite;
+}
+
+body[data-stage="3"] .animal.dance-2 .animal-inner {
+  animation: party-bounce 1.1s ease-in-out infinite;
+}
+
+body[data-stage="3"] .animal.dance-3 .animal-inner {
+  animation: party-shimmy 0.9s ease-in-out infinite;
+}
+
+body[data-stage="3"] .animal.dance-4 .animal-inner {
+  animation: party-wave 1.3s ease-in-out infinite;
+}
+
+.animal.letter-carrier {
+  --scale: 1.2;
+  --pop-y: 14px;
+  --blur: 0px;
+  z-index: 3;
+}
+
+.letter-icon {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  border: none;
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.animal.letter-carrier .letter-icon {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.letter-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+@keyframes arrive {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--angle))
+      translateY(calc(-1 * (var(--radius) + 40px))) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(var(--angle))
+      translateY(calc(-1 * var(--radius))) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes dance-soft {
   0%,
   100% {
-    transform: translate(-50%, -50%) rotate(calc(var(--i) * 45deg))
-      translateY(calc(-1 * clamp(130px, 28vw, 180px)))
-      rotate(-6deg) scale(1);
+    transform: translateY(0) scale(1);
   }
   50% {
-    transform: translate(-50%, -50%) rotate(calc(var(--i) * 45deg))
-      translateY(calc(-1 * clamp(130px, 28vw, 180px)))
-      rotate(6deg) scale(1.05);
+    transform: translateY(-6px) scale(1.03);
+  }
+}
+
+@keyframes dance-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.05);
+  }
+}
+
+@keyframes dance-spin {
+  0%,
+  100% {
+    transform: rotate(-6deg) scale(1);
+  }
+  50% {
+    transform: rotate(6deg) scale(1.04);
+  }
+}
+
+@keyframes dance-shimmy {
+  0%,
+  100% {
+    transform: translateX(0) scale(1);
+  }
+  50% {
+    transform: translateX(6px) scale(1.02);
+  }
+}
+
+@keyframes party-spin {
+  0%,
+  100% {
+    transform: rotate(-10deg) scale(1.03);
+  }
+  50% {
+    transform: rotate(10deg) scale(1.08);
+  }
+}
+
+@keyframes party-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1.04);
+  }
+  50% {
+    transform: translateY(-14px) scale(1.12);
+  }
+}
+
+@keyframes party-shimmy {
+  0%,
+  100% {
+    transform: translateX(0) scale(1.04);
+  }
+  50% {
+    transform: translateX(10px) scale(1.08);
+  }
+}
+
+@keyframes party-wave {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0) scale(1.03);
+  }
+  50% {
+    transform: rotate(6deg) translateY(-8px) scale(1.07);
   }
 }
 
@@ -179,15 +442,15 @@ body.celebration .animal {
 .candles {
   position: absolute;
   top: 5%;
-  width: 60%;
+  width: 55%;
   display: flex;
   justify-content: space-between;
   padding: 0 4%;
 }
 
 .candle {
-  width: clamp(14px, 4vw, 18px);
-  height: clamp(50px, 12vw, 70px);
+  width: clamp(16px, 4vw, 20px);
+  height: clamp(54px, 12vw, 74px);
   background: #ffd166;
   border-radius: 8px;
   position: relative;
@@ -322,7 +585,7 @@ body.celebration .animal {
   animation: rainbow 4s linear infinite;
 }
 
-body.celebration .message {
+body[data-stage="3"] .message {
   opacity: 1;
   transform: translateY(0);
 }
@@ -365,8 +628,124 @@ body.celebration .message {
   }
 }
 
-body.celebration #balloons {
-  opacity: 1;
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(25, 15, 35, 0.55);
+}
+
+.modal-card {
+  position: relative;
+  width: min(90vw, 420px);
+  max-height: 80vh;
+  background: #fff;
+  border-radius: 24px;
+  padding: 1.6rem 1.2rem 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  z-index: 1;
+}
+
+.modal-note {
+  font-size: 0.85rem;
+  color: #6d5a7c;
+}
+
+.modal-sender {
+  font-weight: 700;
+  color: #5b3c6b;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: none;
+  background: #f0e6f6;
+  border-radius: 999px;
+  width: 36px;
+  height: 36px;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.envelope-body {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 150px;
+  background: #f7e9ff;
+  border-radius: 0 0 20px 20px;
+  border: 2px solid #e6cffa;
+  z-index: 1;
+}
+
+.envelope-flap {
+  position: absolute;
+  bottom: 86px;
+  width: 100%;
+  height: 120px;
+  background: #f3dcff;
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  transform-origin: top center;
+  transform: rotateX(0deg);
+  transition: transform 0.6s ease;
+  z-index: 2;
+}
+
+.letter {
+  position: relative;
+  width: 90%;
+  max-height: 160px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 1rem;
+  border: 1px solid #ead7f7;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(120px);
+  transition: transform 0.6s ease;
+  overflow-y: auto;
+  z-index: 3;
+}
+
+.modal.open .envelope-flap {
+  transform: rotateX(160deg);
+}
+
+.modal.open .letter {
+  transform: translateY(0);
+}
+
+#modalMessage {
+  text-align: left;
+  line-height: 1.5;
+  font-size: 0.96rem;
+  white-space: pre-line;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -378,6 +757,10 @@ body.celebration #balloons {
 
   .meter-fill {
     transition: none;
+  }
+
+  .sparkles span {
+    animation: none;
   }
 }
 
