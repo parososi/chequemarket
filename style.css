@@ -7,6 +7,11 @@
   --accent-dark: #e4577a;
   --text: #3d2942;
   --max-width: 640px;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-gentle: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 220ms;
+  --duration-medium: 320ms;
+  --duration-slow: 420ms;
 }
 
 * {
@@ -24,6 +29,7 @@ body {
   padding: 2vh 4vw 6vh;
   position: relative;
   overflow-x: hidden;
+  overscroll-behavior-x: none;
 }
 
 #confetti,
@@ -46,7 +52,7 @@ body {
   gap: 1rem;
   padding: 2rem 1.5rem;
   opacity: 0;
-  transition: opacity 0.6s ease;
+  transition: opacity var(--duration-slow) var(--ease-standard);
 }
 
 body[data-stage="2"] #balloons,
@@ -180,7 +186,8 @@ body[data-stage="3"] #balloons {
   transform: translate(-50%, -50%) rotate(var(--angle))
     translateY(calc(-1 * var(--radius))) scale(var(--scale))
     translateY(var(--lift));
-  transition: transform 0.35s ease, filter 0.35s ease;
+  transition: transform var(--duration-medium) var(--ease-standard),
+    filter var(--duration-medium) var(--ease-standard);
   filter: blur(var(--blur));
   opacity: 0;
   pointer-events: none;
@@ -201,6 +208,7 @@ body[data-stage="3"] #balloons {
 .animal.is-active {
   opacity: 1;
   pointer-events: auto;
+  will-change: transform, filter, opacity;
 }
 
 body[data-stage="1"] .animal[data-dance="bounce"] .animal-inner {
@@ -259,7 +267,7 @@ body[data-stage="3"] .animal[data-dance="hop"] .animal-inner {
 }
 
 .animal.letter-pop {
-  animation: letter-pop 0.35s ease-out;
+  animation: letter-pop var(--duration-medium) var(--ease-standard);
 }
 
 .letter-icon {
@@ -280,6 +288,7 @@ body[data-stage="3"] .animal[data-dance="hop"] .animal-inner {
   opacity: 0;
   pointer-events: none;
   animation: letter-wiggle 1.8s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animal.letter-carrier .letter-icon {
@@ -586,7 +595,8 @@ body[data-stage="3"] .animal[data-dance="hop"] .animal-inner {
   margin-top: 1vh;
   opacity: 0;
   transform: translateY(10px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity var(--duration-slow) var(--ease-standard),
+    transform var(--duration-slow) var(--ease-standard);
   background: linear-gradient(90deg, #ffadad, #ffd6a5, #caffbf, #9bf6ff, #bdb2ff, #ffc6ff);
   -webkit-background-clip: text;
   color: transparent;
@@ -643,6 +653,7 @@ body[data-stage="3"] .message {
   align-items: center;
   justify-content: center;
   z-index: 10;
+  overflow: hidden;
 }
 
 .modal.hidden {
@@ -667,6 +678,8 @@ body[data-stage="3"] .message {
   flex-direction: column;
   gap: 0.8rem;
   z-index: 1;
+  perspective: 1200px;
+  contain: paint;
 }
 
 .modal-sender {
@@ -696,6 +709,7 @@ body[data-stage="3"] .message {
   align-items: flex-end;
   justify-content: center;
   overflow: hidden;
+  transform-style: preserve-3d;
 }
 
 .envelope-body {
@@ -717,9 +731,11 @@ body[data-stage="3"] .message {
   background: #f3dcff;
   clip-path: polygon(0 100%, 50% 0, 100% 100%);
   transform-origin: top center;
-  transform: rotateX(0deg);
-  transition: transform 0.6s ease;
+  transform: rotateX(0deg) translateZ(0);
+  transition: transform var(--duration-slow) var(--ease-standard);
   z-index: 2;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 .letter {
@@ -731,10 +747,11 @@ body[data-stage="3"] .message {
   padding: 1rem;
   border: 1px solid #ead7f7;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  transform: translateY(120px);
-  transition: transform 0.6s ease;
+  transform: translateY(120px) translateZ(0);
+  transition: transform var(--duration-slow) var(--ease-standard);
   overflow-y: auto;
   z-index: 3;
+  will-change: transform;
 }
 
 .modal.open .envelope-flap {
