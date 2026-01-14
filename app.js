@@ -36,6 +36,7 @@ const activeLetters = new Map();
 const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
 ).matches;
+const LETTER_POP_DURATION = prefersReducedMotion ? 0 : 320;
 
 const DECK_KEY = "raissaMessageDeck";
 
@@ -977,7 +978,7 @@ function assignLetterToAnimal(animal, messageItem) {
   activeLetters.set(animal, messageItem);
   setTimeout(() => {
     animal.classList.remove("letter-pop");
-  }, 400);
+  }, LETTER_POP_DURATION);
 }
 
 function removeLetterFromAnimal(animal) {
