@@ -405,6 +405,24 @@ const messagePool = [
     body:
       "Raissa, que o seu novo ano traga leveza, carinho e muita alegria.\n— Equipe The Rose",
   },
+  {
+    id: "therose-4",
+    artist: "Equipe The Rose",
+    body:
+      "Raissa, que sua semana inteira tenha o mesmo encanto e carinho deste aniversário.\n— Equipe The Rose",
+  },
+  {
+    id: "sunset-1",
+    artist: "Carta da Natureza",
+    body:
+      "Raissa, que o som do vento, das folhas e da chuva te lembre de respirar fundo e sorrir. Feliz aniversário.\n— Carta da Natureza",
+  },
+  {
+    id: "sunset-2",
+    artist: "Carta da Natureza",
+    body:
+      "Raissa, que seu novo ciclo floresça no tempo certo, com paz, coragem e muita luz.\n— Carta da Natureza",
+  },
 ];
 
 const messageById = new Map(messagePool.map((messageItem) => [messageItem.id, messageItem]));
@@ -1021,13 +1039,16 @@ function openModal(messageItem, animal) {
   modal.classList.remove("hidden");
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
   activeModalAnimal = animal;
 }
 
 function closeModal() {
+  if (modal.classList.contains("hidden")) return;
   modal.classList.remove("open");
   modal.classList.add("hidden");
   modal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
   if (activeModalAnimal) {
     removeLetterFromAnimal(activeModalAnimal);
     const delay = 400 + Math.random() * 500;
@@ -1083,6 +1104,11 @@ function spawnAnimals() {
 
 modalClose.addEventListener("click", closeModal);
 modalBackdrop.addEventListener("click", closeModal);
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeModal();
+  }
+});
 
 fallbackButton.addEventListener("click", () => {
   const nextIndex = candles.findIndex((c) => c.classList.contains("lit"));
