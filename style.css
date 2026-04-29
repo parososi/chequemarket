@@ -200,12 +200,14 @@ body[data-stage="3"] #balloons {
 .animal-inner {
   width: 100%;
   height: 100%;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .animal svg {
   width: 100%;
   height: 100%;
-  filter: hue-rotate(var(--hue, 0deg));
+  filter: hue-rotate(var(--hue, 0deg)) drop-shadow(0 6px 8px rgba(0,0,0,0.14));
 }
 
 .animal.is-active {
@@ -672,6 +674,7 @@ body[data-stage="3"] .message {
 }
 
 .modal-card {
+  animation: card-fade 280ms var(--ease-standard);
   position: relative;
   width: min(92vw, 460px);
   max-height: min(86vh, 620px);
@@ -795,12 +798,27 @@ body[data-stage="3"] .message {
 
 #modalMessage {
   text-align: left;
+  letter-spacing: 0.01em;
   line-height: 1.58;
   font-size: 0.98rem;
   white-space: pre-line;
   color: #5d4228;
 }
 
+
+@keyframes card-fade {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.letter::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 10px;
+  border: 1px dashed rgba(193, 140, 86, 0.3);
+  pointer-events: none;
+}
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
