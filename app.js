@@ -580,6 +580,38 @@ const speciesSvgs = {
       <path d="M90 26 Q80 12 70 22" stroke="#8c6a4e" stroke-width="4" fill="none" />
     </svg>
   `,
+
+  capybara: `
+    <svg viewBox="0 0 120 120" role="img" aria-label="Capivarinha fofa">
+      <ellipse cx="60" cy="72" rx="34" ry="26" fill="#b48764"/>
+      <circle cx="52" cy="66" r="4" fill="#2f2f2f"/>
+      <circle cx="76" cy="66" r="4" fill="#2f2f2f"/>
+      <ellipse cx="64" cy="78" rx="10" ry="7" fill="#d8b08a"/>
+      <path d="M56 84 Q64 90 72 84" stroke="#2f2f2f" stroke-width="3" fill="none"/>
+      <rect x="28" y="46" width="14" height="10" rx="5" fill="#9a6f50"/>
+    </svg>
+  `,
+  otter: `
+    <svg viewBox="0 0 120 120" role="img" aria-label="Lontrinha fofa">
+      <ellipse cx="60" cy="72" rx="30" ry="24" fill="#b7774c"/>
+      <circle cx="40" cy="58" r="12" fill="#9b5f39"/>
+      <circle cx="80" cy="58" r="12" fill="#9b5f39"/>
+      <circle cx="50" cy="68" r="5" fill="#2f2f2f"/>
+      <circle cx="70" cy="68" r="5" fill="#2f2f2f"/>
+      <ellipse cx="60" cy="80" rx="12" ry="8" fill="#f1cfb3"/>
+      <path d="M52 86 Q60 92 68 86" stroke="#2f2f2f" stroke-width="3" fill="none"/>
+    </svg>
+  `,
+  sloth: `
+    <svg viewBox="0 0 120 120" role="img" aria-label="Bichinho-preguiça fofo">
+      <circle cx="60" cy="70" r="32" fill="#b6a48f"/>
+      <circle cx="48" cy="68" r="12" fill="#f4ecdf"/>
+      <circle cx="72" cy="68" r="12" fill="#f4ecdf"/>
+      <circle cx="48" cy="68" r="4" fill="#2f2f2f"/>
+      <circle cx="72" cy="68" r="4" fill="#2f2f2f"/>
+      <ellipse cx="60" cy="82" rx="9" ry="6" fill="#e7d7c7"/>
+    </svg>
+  `,
 };
 
 const animalRoster = [
@@ -607,11 +639,21 @@ const animalRoster = [
   { species: "cat", stage: 2 },
   { species: "lion", stage: 3 },
   { species: "unicorn", stage: 3 },
+  { species: "capybara", stage: 0 },
+  { species: "otter", stage: 1 },
+  { species: "sloth", stage: 1 },
+  { species: "capybara", stage: 2 },
+  { species: "otter", stage: 2 },
+  { species: "sloth", stage: 3 },
+  { species: "bunny", stage: 3 },
+  { species: "panda", stage: 3 },
+  { species: "fox", stage: 3 },
+  { species: "deer", stage: 3 },
 ];
 
 const ringConfigs = [
   {
-    count: 10,
+    count: 14,
     radiusMin: 120,
     radiusMax: 150,
     size: "clamp(58px, 12vw, 86px)",
@@ -627,7 +669,7 @@ const ringConfigs = [
     jitter: 12,
   },
   {
-    count: 4,
+    count: 8,
     radiusMin: 230,
     radiusMax: 260,
     size: "clamp(44px, 9vw, 64px)",
@@ -1016,7 +1058,7 @@ function ensureLetters() {
   const eligibleAnimals = animals.filter(
     (animal) => animal.classList.contains("is-active") && !activeLetters.has(animal)
   );
-  const maxActive = Math.min(3, animals.length);
+  const maxActive = Math.min(6, animals.length);
   let needed = Math.min(maxActive - activeLetters.size, eligibleAnimals.length);
   if (needed <= 0) return;
   const shuffledEligible = shuffle(eligibleAnimals);
@@ -1069,7 +1111,14 @@ function spawnAnimals() {
   }));
 
   animalRoster.forEach((animalData, index) => {
-    const ringIndex = index < 10 ? 0 : index < 20 ? 1 : 2;
+    const firstRingCount = ringConfigs[0].count;
+    const secondRingCount = ringConfigs[1].count;
+    const ringIndex =
+      index < firstRingCount
+        ? 0
+        : index < firstRingCount + secondRingCount
+          ? 1
+          : 2;
     const ring = ringConfigs[ringIndex];
     const slot = ringSlots[ringIndex];
     const angleStep = 360 / ring.count;
